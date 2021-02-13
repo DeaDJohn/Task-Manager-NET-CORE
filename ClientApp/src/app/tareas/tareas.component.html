@@ -7,15 +7,26 @@
 
 <div class="row" *ngIf="tareas">
   
-  <div class="col-12 col-sm-6" *ngFor="let tarea of tareas">
-    <div id="tarea{{ tarea.id }}" class="card" >
-      <div class="card-body">
-        <h5 class="card-title">{{ tarea.nombreTarea }}</h5>
-        <span>Fecha Creacion: <i>{{ tarea.fechaCreacion }}</i></span>
-        <span>Fecha Finacizacion: <i>{{ tarea.fechaFinalizacion }}</i></span>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div>
+  <div class="col-12 col-sm-6 mb-5" *ngFor="let tarea of tareas">
+	  <div id="tarea-{{ tarea.id }}" class="card tarea tarea-{{ tarea.id }}" >
+		<div  class="position-absolute tag d-flex">
+			<span *ngIf="tarea.fechaFinalizacion" class="badge badge badge-dark">Terminada</span>
+			<span *ngIf="!tarea.fechaFinalizacion" class="badge badge-success">Abierta</span>
+			<span *ngIf="!tarea.importante" class="badge badge-danger ml-2">IMPORTANTE</span>
+		</div>
+	 	 <div class="card-body">
+			<h5 class="card-title">{{ tarea.nombreTarea }}</h5>
+			<ng-container *ngIf="tarea.creador">
+				<strong>Creada por: </strong><i>{{ tarea.creador }}</i>
+			</ng-container>
+			<p><strong>Fecha Creacion: </strong> <i>{{ tarea.fechaCreacion | date }}</i><br>
+			<ng-container *ngIf="tarea.fechaFinalizacion">
+				<strong>Fecha Finacizacion: </strong><i>{{ tarea.fechaFinalizacion | date }}</i>
+			</ng-container>
+			</p>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		</div>
+	</div>
   </div>
 
 

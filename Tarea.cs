@@ -15,6 +15,10 @@ namespace probando
 
 		public DateTime FechaFinalicacion { get; set; }
 
+		public string Explicacion { get; set; }
 
+		public bool Importante { get; set; }
+
+		public string Creador { get; set; }
 	}
 }

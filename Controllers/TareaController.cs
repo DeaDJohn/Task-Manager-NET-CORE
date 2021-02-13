@@ -29,7 +29,9 @@ namespace probando.Controllers
 				NombreTarea = Tareas[rng.Next(Tareas.Length)],
 				FechaCreacion = DateTime.Now.AddDays(index),
 				FechaFinalicacion = DateTime.MinValue,
-				
+				Explicacion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mattis turpis sit amet ex iaculis vestibulum. Curabitur hendrerit faucibus suscipit. Quisque elementum, sem nec cursus.",
+				Importante = rng.Next(100) <= 50 ? true : false,
+				Creador = "YO"
 			})
 			.ToArray();
 

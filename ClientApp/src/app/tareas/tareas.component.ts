@@ -24,4 +24,7 @@ interface Tarea {
   nombreTarea: string;
   fechaCreacion: Date;
   fechaFinalizacion: Date;
+  explicacion: string;
+  importante: boolean;
+  creador: string;
 }
