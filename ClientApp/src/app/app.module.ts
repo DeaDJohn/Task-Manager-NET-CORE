@@ -34,6 +34,7 @@ import { TareasComponent } from './tareas/tareas.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'consultar-api', component: ConsultarApiComponent },
       { path: 'tareas', component: TareasComponent },
+	  { path: 'tareas/:id', component: TareaComponent },
     ])
   ],
   providers: [],

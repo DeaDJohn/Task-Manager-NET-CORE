@@ -18,16 +18,21 @@ namespace probando.Controllers
 		//	"Abrir", "Cerrar", "Poner", "Quitar", "Borrar", "Probar"
 		//};
 		private List<Tarea> tareaList = new List<Tarea>();
-		// GET: api/<TareaController>
-		[HttpGet]
-		public IEnumerable<Tarea> Get()
+
+		public TareaController()
 		{
-			tareaList.Add(new Tarea(0, "Crear proyecto", new DateTime(2021, 1, 1), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito" ));
+			tareaList.Add(new Tarea(0, "Crear proyecto", new DateTime(2021, 1, 1), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
 			tareaList.Add(new Tarea(1, "Programar proyecto", new DateTime(2021, 1, 10), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
 			tareaList.Add(new Tarea(2, "Probar proyecto", new DateTime(2021, 1, 21), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
 			tareaList.Add(new Tarea(3, "Resolver fallos", new DateTime(2021, 2, 7), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
 			tareaList.Add(new Tarea(4, "Resolver fallos", new DateTime(2021, 2, 7), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
 			tareaList.Add(new Tarea(5, "Subir a producción", new DateTime(2021, 2, 9), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
+		}
+
+		// GET: api/<TareaController>
+		[HttpGet]
+		public IEnumerable<Tarea> Get()
+		{
 
 			return tareaList.ToArray();
 
@@ -35,20 +40,22 @@ namespace probando.Controllers
 
 		// GET api/<TareaController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public Tarea Get(int id)
 		{
-			return "value";
+			Tarea tarea = tareaList.Find(item => item.Id == id);
+			return tarea;
 		}
 
 		// POST api/<TareaController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public void Post([FromBody] Tarea tarea)
 		{
+
 		}
 
 		// PUT api/<TareaController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public void Put(int id, [FromBody] Tarea tarea)
 		{
 		}
 
@@ -56,6 +63,7 @@ namespace probando.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
+			
 		}
 	}
 }

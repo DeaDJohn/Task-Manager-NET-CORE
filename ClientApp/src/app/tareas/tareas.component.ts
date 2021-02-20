@@ -13,6 +13,7 @@ export class TareasComponent {
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<Tarea[]>(baseUrl + 'api/tarea').subscribe(result => {
       this.tareas = result;
+	  console.log(this.tareas);
     }, error => console.error(error));
   }
 
