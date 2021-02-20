@@ -13,27 +13,23 @@ namespace probando.Controllers
 	public class TareaController : ControllerBase
 	{
 
-		private static string[] Tareas = new[]
-		{
-			"Abrir", "Cerrar", "Poner", "Quitar", "Borrar", "Probar"
-		};
-
+		//private static tarea[] Tareas = new[]
+		//{
+		//	"Abrir", "Cerrar", "Poner", "Quitar", "Borrar", "Probar"
+		//};
+		private List<Tarea> tareaList = new List<Tarea>();
 		// GET: api/<TareaController>
 		[HttpGet]
 		public IEnumerable<Tarea> Get()
 		{
-			var rng = new Random();
-			return Enumerable.Range(1, 5).Select(index => new Tarea
-			{
-				id = rng.Next(0, 255),
-				NombreTarea = Tareas[rng.Next(Tareas.Length)],
-				FechaCreacion = DateTime.Now.AddDays(index),
-				FechaFinalicacion = DateTime.MinValue,
-				Explicacion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mattis turpis sit amet ex iaculis vestibulum. Curabitur hendrerit faucibus suscipit. Quisque elementum, sem nec cursus.",
-				Importante = rng.Next(100) <= 50 ? true : false,
-				Creador = "YO"
-			})
-			.ToArray();
+			tareaList.Add(new Tarea(0, "Crear proyecto", new DateTime(2021, 1, 1), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito" ));
+			tareaList.Add(new Tarea(1, "Programar proyecto", new DateTime(2021, 1, 10), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
+			tareaList.Add(new Tarea(2, "Probar proyecto", new DateTime(2021, 1, 21), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
+			tareaList.Add(new Tarea(3, "Resolver fallos", new DateTime(2021, 2, 7), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
+			tareaList.Add(new Tarea(4, "Resolver fallos", new DateTime(2021, 2, 7), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
+			tareaList.Add(new Tarea(5, "Subir a producción", new DateTime(2021, 2, 9), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
+
+			return tareaList.ToArray();
 
 		}
 
