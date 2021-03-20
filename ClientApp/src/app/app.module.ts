@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ConsultarApiComponent } from './consultar-api/consultar-api.component';
 import { TareaComponent } from './tarea/tarea.component';
 import { TareasComponent } from './tareas/tareas.component';
+import { TareaEditarComponent } from './tarea-editar/tarea-editar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TareasComponent } from './tareas/tareas.component';
     FetchDataComponent,
     ConsultarApiComponent,
     TareaComponent,
-    TareasComponent
+    TareasComponent,
+    TareaEditarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,7 +36,7 @@ import { TareasComponent } from './tareas/tareas.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'consultar-api', component: ConsultarApiComponent },
       { path: 'tareas', component: TareasComponent },
-	  { path: 'tareas/:id', component: TareaComponent },
+	    { path: 'tareas/:id', component: TareaEditarComponent },
     ])
   ],
   providers: [],
