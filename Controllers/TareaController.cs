@@ -55,8 +55,17 @@ namespace probando.Controllers
 
 		// PUT api/<TareaController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] Tarea tarea)
+		public Tarea Put(int id, [FromBody] Tarea tarea)
 		{
+			Tarea tareaFind = tareaList.Where(p => p.Id == id).FirstOrDefault();
+
+			if( tareaFind != null)
+			{
+				tareaFind.NombreTarea = tarea.NombreTarea;
+				tareaFind.FechaFinalicacion = tarea.FechaFinalicacion;
+				tareaFind.Importante = tarea.Importante;
+			}
+			return tareaFind;
 		}
 
 		// DELETE api/<TareaController>/5

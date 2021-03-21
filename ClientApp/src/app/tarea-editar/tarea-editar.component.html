@@ -1,8 +1,8 @@
 <h1 id="tableLabel">Tareas</h1>
 
-<p  *ngIf="tareas">{{ tareas.nombreTarea }}</p>
+<p  *ngIf="tarea">{{ tarea.nombreTarea }}</p>
 
-<p *ngIf="!tareas"><em>Loading...</em></p>
+<p *ngIf="!tarea"><em>Loading...</em></p>
 
 
 <ul id="tareasFilters" class="nav nav-tabs my-5 justify-content-end">
@@ -20,27 +20,27 @@
 	</li>
 </ul>
 
-<div class="row" *ngIf="tareas">
+<div class="row" *ngIf="tarea">
 
 	<div class="col-12 col-sm-6 mb-5" >
-		<div id="tarea-{{ tareas.id }}" class="tarea tarea-{{ tareas.id }}" >
-			<form (ngSubmit)="onSubmit()" #tareaForm="ngForm">
+		<div id="tarea-{{ tarea.id }}" class="tarea tarea-{{ tarea.id }}" >
+			<form (ngSubmit)="onSubmit(tareaForm)" #tareaForm="ngForm">
 				<div  class="position-absolute tag d-flex">
-					<span *ngIf="tareas.fechaFinalizacion" class="badge badge badge-dark">Terminada</span>
-					<span *ngIf="!tareas.fechaFinalizacion" class="badge badge-success">Abierta</span>
-					<span *ngIf="!tareas.importante" class="badge badge-danger ml-2">IMPORTANTE</span>
+					<span *ngIf="tarea.fechaFinalizacion" class="badge badge badge-dark">Terminada</span>
+					<span *ngIf="!tarea.fechaFinalizacion" class="badge badge-success">Abierta</span>
+					<span *ngIf="!tarea.importante" class="badge badge-danger ml-2">IMPORTANTE</span>
 				</div>
 				<div class="form-group">
 					<label for="nombreTarea">Tarea</label>
 					<input type="text" class="form-control" id="nombreTarea"
 						   required
-						   [(ngModel)]="tareas.nombreTarea" name="nombreTarea">
+						   [(ngModel)]="tarea.nombreTarea" name="nombreTarea">
 				</div>
 				<div class="form-group">
 					<label for="importante">Importante</label>
 					<select class="form-control"  id="importante"
 							required
-							[(ngModel)]="tareas.importante" name="importante">
+							[(ngModel)]="tarea.importante" name="importante">
 					  <option [value]="true">Si</option>
 					  <option [value]="false">No</option>
 					</select>
@@ -49,19 +49,27 @@
 					<label for="creador">Autor</label>
 					<input type="text" class="form-control" id="creador"
 						   required
-						   [(ngModel)]="tareas.creador" name="creador" readonly>
+						   [(ngModel)]="tarea.creador" name="creador" readonly>
 				</div>
 				<div class="form-group">
 					<label for="fechaFinalizacion">Fecha finalización</label>
-					<input type="date" class="form-control" id="fechaFinalizacion" datetime="yyyy-MM-dd HH:mm:ss"
-						   [(ngModel)]="tareas.fechaFinalizacion" name="fechaFinalizacion">
+					<input type="date" class="form-control" id="fechaFinalizacion" datetime="yyyy-MM-dd"
+							value="{{tarea.fechaFinalizacion | date: 'yyyy-MM-dd' }}"
+						   	name="fechaFinalizacion">
 				</div>
 				<div class="form-group">
 					<label for="fechaCreacion">Fecha Creación</label>
-					<input type="date" class="form-control" id="fechaCreacion" datetime="yyyy-MM-dd HH:mm:ss"
-						   [(ngModel)]="tareas.fechaCreacion" name="fechaCreacion" readonly>
+					<input type="date" class="form-control" id="fechaCreacion" 
+					value="{{tarea.fechaCreacion | date: 'yyyy-MM-dd' }}" 
+					name="fechaCreacion" readonly>
 				</div>
-				<button type="button" class="btn btn-default" (click)="editarTarea()">Editar tarea</button>
+				<button type="submit" class="btn btn-primary" >Editar tarea</button>
+				<div class="message success" *ngIf="status == 'success'">
+					La tarea se ha guardado correctamente.
+				</div>
+				<div class="message failed" *ngIf="status == 'failed'">
+					La tarea no se ha podido guardar.
+				</div>
 			</form>
 		</div>
 	</div>

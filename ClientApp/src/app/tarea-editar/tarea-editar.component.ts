@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -12,25 +12,53 @@ import {map} from 'rxjs/operators';
 export class TareaEditarComponent  {
 
 
-  public tareas: Tarea;
+  public tarea: Tarea;
   private id: string;
+  public status: string;
+  private saveTarea: Tarea;
+  private http: HttpClient;
+  private baseUrl: string;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute) {
     this.id = route.snapshot.paramMap.get("id");
-
+    this.baseUrl = baseUrl;
+    this.http = http;
     console.log(this.id);
     http.get<Tarea>(baseUrl + 'api/tarea/'+ this.id).subscribe(result => {
-      this.tareas = result;
-      console.log( this.tareas )
+      this.tarea = result;
+      console.log( this.tarea )
     }, error => console.error(error));
   }
 
-  onSubmit(){
+  onSubmit(form) {
+		// Guardar los datos
+		this.editTarea(this.tarea).subscribe(
+			response => {
+				if (response) {
 
-  }
-  editarTarea(){
+						this.saveTarea = response;
+						this.status = "success";
+				} else {
+					this.status = "failed";
+				}
+			},
+			error => {
+				console.log(<any>error);
+			}
+		);
+	}
 
-  }
+  editTarea(tarea: Tarea): Observable<any> {
+    let params = JSON.stringify(tarea);
+    console.log( params );
+    console.log(this.baseUrl + "api/tarea/" + tarea.id);
+    let headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.put(
+      this.baseUrl + "api/tarea/" + tarea.id,
+      params,
+      { headers: headers }
+    );
+}
 
 }
 
