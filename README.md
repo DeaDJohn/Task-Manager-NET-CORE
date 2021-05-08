@@ -1,4 +1,4 @@
-# Tareas .NET
-## Creado por Juan Jose Fernandez.
+# TASK MANAGER NET CORE
+## created by Juan Jose Fernandez.
 
-Pequeño proyecto en .Net core y Angular para crear desde 0 una aplicación de gestión de tareas.
+It is an application to manage tasks. Create, update or delete tasks. The backend is made with .NET CORE (C #) and the front in Angular (Typescript). It would be necessary to connect it to a database. Now a List is used to show some task.
