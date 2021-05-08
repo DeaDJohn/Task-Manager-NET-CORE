@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Consultar API</h1>
+
+<p>This component demonstrates fetching data from external API. (<a href="https://jsonplaceholder.typicode.com/" target="_blank">jsonplaceholder</a>)</p>
+
+<p *ngIf="!usuarios"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="usuarios">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Website</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{ usuario.name }}</td>
+      <td>{{ usuario.username }}</td>
+      <td>{{ usuario.email }}</td>
+      <td><a href="{{ usuario.website }}" target="_blank">{{ usuario.website }}</a></td>
+    </tr>
+  </tbody>
+</table>

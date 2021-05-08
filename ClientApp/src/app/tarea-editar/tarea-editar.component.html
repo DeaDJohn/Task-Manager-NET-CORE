@@ -1,0 +1,75 @@
+<h1 id="tableLabel">Tareas</h1>
+
+<p  *ngIf="tarea">{{ tarea.nombreTarea }}</p>
+
+<p *ngIf="!tarea"><em>Loading...</em></p>
+
+
+<ul id="tareasFilters" class="nav nav-tabs my-5 justify-content-end">
+	<li id="tareasFilters-activas" class="nav-item">
+		<a class="nav-link" href="#">Activas</a>
+	</li>
+	<li id="tareasFilters-cerradas" class="nav-item">
+		<a class="nav-link" href="#">Cerradas</a>
+	</li>
+	<li id="tareasFilters-importantes" class="nav-item">
+		<a class="nav-link" href="#">Importantes</a>
+	</li>
+	<li id="tareasFilters-nueva" class="nav-item">
+		<a class="nav-link" href="#">Añadir <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.75 4.75a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z"></path></svg></a>
+	</li>
+</ul>
+
+<div class="row" *ngIf="tarea">
+
+	<div class="col-12 col-sm-6 mb-5" >
+		<div id="tarea-{{ tarea.id }}" class="tarea tarea-{{ tarea.id }}" >
+			<form (ngSubmit)="onSubmit(tareaForm)" #tareaForm="ngForm">
+				<div  class="position-absolute tag d-flex">
+					<span *ngIf="tarea.fechaFinalizacion" class="badge badge badge-dark">Terminada</span>
+					<span *ngIf="!tarea.fechaFinalizacion" class="badge badge-success">Abierta</span>
+					<span *ngIf="!tarea.importante" class="badge badge-danger ml-2">IMPORTANTE</span>
+				</div>
+				<div class="form-group">
+					<label for="nombreTarea">Tarea</label>
+					<input type="text" class="form-control" id="nombreTarea"
+						   required
+						   [(ngModel)]="tarea.nombreTarea" name="nombreTarea">
+				</div>
+				<div class="form-group">
+					<label for="importante">Importante</label>
+					<select class="form-control"  id="importante"
+							required
+							[(ngModel)]="tarea.importante" name="importante">
+					  <option [value]="true">Si</option>
+					  <option [value]="false">No</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="creador">Autor</label>
+					<input type="text" class="form-control" id="creador"
+						   required
+						   [(ngModel)]="tarea.creador" name="creador" readonly>
+				</div>
+				<div class="form-group">
+					<label for="fechaFinalizacion">Fecha finalización</label>
+					<input type="date" class="form-control" id="fechaFinalizacion" datetime="yyyy-MM-dd"
+							value="{{tarea.fechaFinalizacion | date: 'yyyy-MM-dd' }}"
+						   	name="fechaFinalizacion">
+				</div>
+				<div class="form-group">
+					<label for="fechaCreacion">Fecha Creación</label>
+					<input type="date" class="form-control" id="fechaCreacion" 
+					value="{{tarea.fechaCreacion | date: 'yyyy-MM-dd' }}" 
+					name="fechaCreacion" readonly>
+				</div>
+				<button type="submit" class="btn btn-primary" >Editar tarea</button>
+				<div class="message success" *ngIf="status == 'success'">
+					La tarea se ha guardado correctamente.
+				</div>
+				<div class="message failed" *ngIf="status == 'failed'">
+					La tarea no se ha podido guardar.
+				</div>
+			</form>
+		</div>
+	</div>
