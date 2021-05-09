@@ -34,14 +34,14 @@ import { TareaCrearComponent } from './tarea-crear/tarea-crear.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: TareasComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'consultar-api', component: ConsultarApiComponent },
-      { path: 'tareas', component: TareasComponent },
-      { path: 'new-tarea', component: TareaCrearComponent },
-	    { path: 'tareas/:id', component: TareaEditarComponent },
-    ])
+    { path: '', component: TareasComponent, pathMatch: 'full' },
+    { path: 'counter', component: CounterComponent },
+    { path: 'fetch-data', component: FetchDataComponent },
+    { path: 'consultar-api', component: ConsultarApiComponent },
+    { path: 'tareas', component: TareasComponent },
+    { path: 'new-tarea', component: TareaCrearComponent },
+    { path: 'tareas/:id', component: TareaEditarComponent },
+], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
   bootstrap: [AppComponent]
