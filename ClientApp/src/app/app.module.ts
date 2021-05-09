@@ -14,6 +14,7 @@ import { ConsultarApiComponent } from './consultar-api/consultar-api.component';
 import { TareaComponent } from './tarea/tarea.component';
 import { TareasComponent } from './tareas/tareas.component';
 import { TareaEditarComponent } from './tarea-editar/tarea-editar.component';
+import { TareaCrearComponent } from './tarea-crear/tarea-crear.component';
 
 @NgModule({
   declarations: [
@@ -25,18 +26,20 @@ import { TareaEditarComponent } from './tarea-editar/tarea-editar.component';
     ConsultarApiComponent,
     TareaComponent,
     TareasComponent,
-    TareaEditarComponent
+    TareaEditarComponent,
+    TareaCrearComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: TareasComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'consultar-api', component: ConsultarApiComponent },
       { path: 'tareas', component: TareasComponent },
+      { path: 'new-tarea', component: TareaCrearComponent },
 	    { path: 'tareas/:id', component: TareaEditarComponent },
     ])
   ],

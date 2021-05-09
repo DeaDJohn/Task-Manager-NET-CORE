@@ -1,8 +1,4 @@
-<h1 id="tableLabel">Tareas</h1>
-
-<p  *ngIf="tarea">{{ tarea.nombreTarea }}</p>
-
-<p *ngIf="!tarea"><em>Loading...</em></p>
+<h1 id="tableLabel">Nueva tarea</h1>
 
 
 <ul id="tareasFilters" class="nav nav-tabs my-5 justify-content-end">
@@ -20,16 +16,12 @@
 	</li>
 </ul>
 
-<div class="row" *ngIf="tarea">
+<div class="row" >
 
 	<div class="col-12 col-sm-6 mb-5" >
-		<div id="tarea-{{ tarea.id }}" class="tarea tarea-{{ tarea.id }}" >
+		<div id="tarea-new" class="tarea tarea-new" >
 			<form (ngSubmit)="onSubmit(tareaForm)" #tareaForm="ngForm">
-				<div  class="position-absolute tag d-flex">
-					<span *ngIf="tarea.fechaFinalizacion" class="badge badge badge-dark">Terminada</span>
-					<span *ngIf="!tarea.fechaFinalizacion" class="badge badge-success">Abierta</span>
-					<span *ngIf="!tarea.importante" class="badge badge-danger ml-2">IMPORTANTE</span>
-				</div>
+
 				<div class="form-group">
 					<label for="nombreTarea">Tarea</label>
 					<input type="text" class="form-control" id="nombreTarea"
@@ -59,11 +51,11 @@
 				</div>
 				<div class="form-group">
 					<label for="fechaCreacion">Fecha Creación</label>
-					<input type="date" class="form-control" id="fechaCreacion" 
-					value="{{tarea.fechaCreacion | date: 'yyyy-MM-dd' }}" 
+					<input type="date" class="form-control" id="fechaCreacion"
+					value="{{tarea.fechaCreacion | date: 'yyyy-MM-dd' }}"
 					name="fechaCreacion" readonly>
 				</div>
-				<button type="submit" class="btn btn-primary" >Editar tarea</button>
+				<button type="submit" class="btn btn-primary" >Crear tarea</button>
 				<div class="message success" *ngIf="status == 'success'">
 					La tarea se ha guardado correctamente.
 				</div>
