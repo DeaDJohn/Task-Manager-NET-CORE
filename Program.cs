@@ -11,6 +11,8 @@ namespace probando
 {
 	public class Program
 	{
+		public static List<Tarea> tareaList = new List<Tarea>();
+
 		public static void Main(string[] args)
 		{
 			CreateHostBuilder(args).Build().Run();

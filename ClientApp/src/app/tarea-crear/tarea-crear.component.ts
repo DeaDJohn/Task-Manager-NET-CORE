@@ -22,13 +22,13 @@ export class TareaCrearComponent {
     this.baseUrl = baseUrl;
     this.http = http;
       this.tarea = {
-        id: null,
+        id: 0,
         nombreTarea: '',
         fechaCreacion: new Date(),
         fechaFinalizacion: null,
         explicacion: null,
         importante: false,
-        creador: ''
+        creador: 'Elon Musk'
       }
   }
 

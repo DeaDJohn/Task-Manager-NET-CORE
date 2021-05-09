@@ -17,16 +17,21 @@ namespace probando.Controllers
 		//{
 		//	"Abrir", "Cerrar", "Poner", "Quitar", "Borrar", "Probar"
 		//};
-		private List<Tarea> tareaList = new List<Tarea>();
+		// private List<Tarea> tareaList = new List<Tarea>();
+		public List<Tarea> tareaList = Program.tareaList;
 
 		public TareaController()
 		{
+			if ( tareaList.Count == 0)
+			{
+
 			tareaList.Add(new Tarea(0, "Crear proyecto", new DateTime(2021, 1, 1), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
 			tareaList.Add(new Tarea(1, "Programar proyecto", new DateTime(2021, 1, 10), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
 			tareaList.Add(new Tarea(2, "Probar proyecto", new DateTime(2021, 1, 21), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", true, "Pepito"));
 			tareaList.Add(new Tarea(3, "Resolver fallos", new DateTime(2021, 2, 7), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
 			tareaList.Add(new Tarea(4, "Resolver fallos", new DateTime(2021, 2, 7), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
 			tareaList.Add(new Tarea(5, "Subir a producción", new DateTime(2021, 2, 9), DateTime.MinValue, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", false, "Pepito"));
+			}
 		}
 
 		// GET: api/<TareaController>
@@ -48,8 +53,15 @@ namespace probando.Controllers
 
 		// POST api/<TareaController>
 		[HttpPost]
-		public void Post([FromBody] Tarea tarea)
+		public IEnumerable<Tarea> Post([FromBody] Tarea tarea)
 		{
+			var lastTarea = tareaList.Last();
+			var nextTareaId = lastTarea.Id + 1;
+
+			tareaList.Add(new Tarea(nextTareaId, tarea.NombreTarea, tarea.FechaCreacion, DateTime.MinValue, tarea.Explicacion, tarea.Importante, tarea.Creador));
+
+			return tareaList;
+
 
 		}
 

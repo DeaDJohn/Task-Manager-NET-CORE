@@ -29,6 +29,13 @@
 						   [(ngModel)]="tarea.nombreTarea" name="nombreTarea">
 				</div>
 				<div class="form-group">
+					<label for="explicacion">Descripción</label>
+					<textarea class="form-control" id="explicacion"
+						   required
+						   [(ngModel)]="tarea.explicacion" name="explicacion">
+					</textarea>
+				</div>
+				<div class="form-group">
 					<label for="importante">Importante</label>
 					<select class="form-control"  id="importante"
 							required
