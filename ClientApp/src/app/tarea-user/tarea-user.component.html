@@ -1,0 +1,37 @@
+
+<h1 id="tableLabel">Tarea</h1>
+
+<p>Tus tareas <span *ngIf="usuario">{{usuario.name}}</span></p>
+
+<p *ngIf="!tarea"><em>Loading...</em></p>
+
+
+<ul id="tareasFilters" class="nav nav-tabs my-5 justify-content-end">
+	<li id="tareasFilters-nueva" class="nav-item">
+		<a class="nav-link" [routerLink]="['/new-tarea']">Añadir <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.75 4.75a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z"></path></svg></a>
+	</li>
+</ul>
+
+<div class="row" *ngIf="tarea">
+
+	<div class="col-12 mb-5">
+		<div id="tarea-{{ tarea.id }}" class="tarea tarea-{{ tarea.id }}" >
+			<div  class="position-absolute tag d-flex">
+				<span *ngIf="tarea.fechaFinalizacion" class="badge badge badge-dark">Terminada</span>
+				<span *ngIf="!tarea.fechaFinalizacion" class="badge badge-success">Abierta</span>
+				<span *ngIf="!tarea.importante" class="badge badge-danger ml-2">IMPORTANTE</span>
+			</div>
+			<div class="pt-5">
+				<h5 class="card-title">{{ tarea.nombreTarea }}</h5>
+				<ng-container *ngIf="tarea.creador">
+					<strong>Creada por: </strong><i>{{ tarea.creador }}</i>
+				</ng-container>
+				<p><strong>Fecha Creacion: </strong> <i>{{ tarea.fechaCreacion | date }}</i><br>
+				<ng-container *ngIf="tarea.fechaFinalizacion">
+					<strong>Fecha Finacizacion: </strong><i>{{ tarea.fechaFinalizacion | date }}</i>
+				</ng-container>
+				</p>
+				<p class="card-text">{{ tarea.explicacion }}</p>
+			</div>
+		</div>
+	</div>

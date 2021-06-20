@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
+import { Tarea } from "../interfaces/tarea";
+
 @Component({
   selector: 'app-tarea-editar',
   templateUrl: './tarea-editar.component.html',
@@ -60,14 +62,4 @@ export class TareaEditarComponent  {
     );
 }
 
-}
-
-interface Tarea {
-  id: number,
-  nombreTarea: string;
-  fechaCreacion: Date;
-  fechaFinalizacion: Date;
-  explicacion: string;
-  importante: boolean;
-  creador: string;
 }

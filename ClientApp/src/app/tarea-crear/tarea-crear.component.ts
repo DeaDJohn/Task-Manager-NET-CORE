@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
-
+import { Tarea } from "../interfaces/tarea";
 
 @Component({
   selector: 'app-tarea-crear',
@@ -64,12 +64,3 @@ export class TareaCrearComponent {
 
 }
 
-interface Tarea {
-  id: number,
-  nombreTarea: string;
-  fechaCreacion: Date;
-  fechaFinalizacion: Date;
-  explicacion: string;
-  importante: boolean;
-  creador: string;
-}

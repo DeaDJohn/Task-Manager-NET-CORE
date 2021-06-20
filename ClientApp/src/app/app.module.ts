@@ -15,6 +15,7 @@ import { TareaComponent } from './tarea/tarea.component';
 import { TareasComponent } from './tareas/tareas.component';
 import { TareaEditarComponent } from './tarea-editar/tarea-editar.component';
 import { TareaCrearComponent } from './tarea-crear/tarea-crear.component';
+import { TareaUserComponent } from './tarea-user/tarea-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TareaCrearComponent } from './tarea-crear/tarea-crear.component';
     TareaComponent,
     TareasComponent,
     TareaEditarComponent,
-    TareaCrearComponent
+    TareaCrearComponent,
+    TareaUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,6 +43,7 @@ import { TareaCrearComponent } from './tarea-crear/tarea-crear.component';
     { path: 'tareas', component: TareasComponent },
     { path: 'new-tarea', component: TareaCrearComponent },
     { path: 'tareas/:id', component: TareaEditarComponent },
+    { path: 'user/:id', component: TareaUserComponent },
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],

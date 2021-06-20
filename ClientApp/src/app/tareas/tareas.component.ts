@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Tarea } from "../interfaces/tarea";
 
 @Component({
   selector: 'app-tareas',
@@ -20,12 +21,4 @@ export class TareasComponent {
 
 }
 
-interface Tarea {
-  id: number,
-  nombreTarea: string;
-  fechaCreacion: Date;
-  fechaFinalizacion: Date;
-  explicacion: string;
-  importante: boolean;
-  creador: string;
-}
+
